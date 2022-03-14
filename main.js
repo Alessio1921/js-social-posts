@@ -175,7 +175,7 @@ posts.forEach(element => {
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author["name"]}</div>
-                    <div class="post-meta__time">${element.created}</div>
+                    <div class="post-meta__time">${dateIt(element.created)}</div>
                 </div>                    
             </div>
         </div>
@@ -212,14 +212,11 @@ for (let i = 0; i < like.length; i++) {
         likedPost.push(posts[i].id);
         console.log(likedPost);
     },{once : true});
-} 
+};
 
 
-
-
-
-
-
-function newPost(params) {
-
+function dateIt(date) {
+    const day=date.split("-").reverse().join("-");
+    console.log(day);
+    return day;
 }

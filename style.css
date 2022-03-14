@@ -117,9 +117,10 @@ h1 {
 
 .like-button__label {
     font-weight: bold;
+    cursor: pointer;
 }
 
 .like-button--liked {
     color: #0CD977;
-    cursor: default;
+    /* cursor: default; */
 }

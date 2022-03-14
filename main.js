@@ -209,15 +209,28 @@ let like=document.querySelectorAll(".like-button");
 let likeTotal=document.querySelectorAll(".js-likes-counter");
 const likedPost=[];
 console.log(like);
+let clicked=false;
+// loop that adds the event to the click and adds or removes the like
 for (let i = 0; i < like.length; i++) {
     like[i].addEventListener("click", function() {
-        like[i].classList.add("like-button--liked");
-        posts[i].likes++;
-        console.log(posts[i].likes);
-        likeTotal[i].innerHTML=posts[i].likes;
-        likedPost.push(posts[i].id);
+        if (clicked==false) {
+            like[i].classList.add("like-button--liked");
+            posts[i].likes++;
+            console.log(posts[i].likes);
+            likeTotal[i].innerHTML=posts[i].likes;
+            likedPost.push(posts[i].id);
+            clicked=true;
+        }
+        else{
+            like[i].classList.remove("like-button--liked");
+            posts[i].likes--;
+            console.log(posts[i].likes);
+            likeTotal[i].innerHTML=posts[i].likes;
+            likedPost.pop();
+            clicked=false;
+        }
         console.log(likedPost);
-    },{once : true});
+    });
 };
 
 /**

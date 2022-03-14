@@ -166,12 +166,18 @@ const posts = [
     },
 ];
 posts.forEach(element => {
+    let imageProfile=`<img class="profile-pic" src="${element.author["image"]}" alt="${element.author["name"]}"> `
+    if (element.author["image"]=="") {
+        imageProfile=`<div class="profile-pic-default">
+                    <span>${initials(element.author["name"])}</span>
+                </div>`
+    }
     document.getElementById("container").innerHTML+=`
     <div class="post">
         <div class="post__header">
             <div class="post-meta">                    
                 <div class="post-meta__icon">
-                    <img class="profile-pic" src="${element.author["image"]}" alt="${element.author["name"]}">                    
+                    ${imageProfile}    
                 </div>
                 <div class="post-meta__data">
                     <div class="post-meta__author">${element.author["name"]}</div>
@@ -214,9 +220,26 @@ for (let i = 0; i < like.length; i++) {
     },{once : true});
 };
 
-
+/**
+ * function that returns the date formatted in Italian
+ * @param {*} date 
+ * @returns 
+ */
 function dateIt(date) {
     const day=date.split("-").reverse().join("-");
-    console.log(day);
     return day;
+}
+
+/**
+ * function that returns the initials
+ * @param {*} name 
+ * @returns 
+ */
+function initials(name) {
+    const nameSurname= name.split(" ");
+    let initial="";
+    for (let i = 0; i < nameSurname.length; i++) {
+        initial+= nameSurname[i].charAt(0);
+    }
+    return initial;
 }
